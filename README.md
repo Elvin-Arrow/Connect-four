@@ -1,4 +1,4 @@
-# Connect-four v1.5
+# Connect-four v1.6
 from tkinter import *
 
 from tkinter import messagebox
