@@ -230,6 +230,7 @@ def main():
         root.destroy()  # Close main screen
         game = Tk() # Create game screen
         game.title("Connect 4")
+        # All images assigned to respective variables
         gameBG = PhotoImage(file="GameBG.png")
         icon1 = PhotoImage(file="Player 1.png")
         icon2 = PhotoImage(file="Player 2.png")
@@ -243,6 +244,7 @@ def main():
         bar = PhotoImage(file="Player bar.png") # Set the image for the player indicator
         playerOne = PhotoImage(file="Player 1.png")
         playerTwo = PhotoImage(file="Player 2.png")
+        # Placement of all the labels and buttons
         gameboard = Label(game, image=gameBG).pack()
         columnButton_1 = Button(game, image=columnicon1, bd=0, bg="#00628B", activebackground="#00628B",
                                 command=lambda: setPlayerColumn(0)).place(x=170, y=670)
@@ -259,6 +261,7 @@ def main():
         columnButton_6 = Button(game, image=columnicon7, bd=0, bg="#00628B", activebackground="#00628B",
                                 command=lambda: setPlayerColumn(6)).place(x=770, y=670)
         barLabel = Label(game, image=bar) # Label generated using the image stored in 'bar' variable
+        
         winnerMessage = StringVar() # Variable to store winner message (belongs to Tk class)
         victoryFlag = False 
         global moveFlag # Tellng python that moveFlag is a global var, so look for the var
@@ -270,6 +273,7 @@ def main():
         initialiseGameBoard() # setup console gameboard
         printGameBoard()  # print gameboard on the console
         setPlayerBar("o") # Place the turn indicator
+        
         while not gameExit: # Game loop
         
             if columnFlag:  # Check whether column is full or not
@@ -322,6 +326,7 @@ def main():
             
         game.destroy()  # Close game window
         main()
+
     root = Tk() # Create main screen
     root.title("Connect 4") # Set main screen title
     bg = PhotoImage(file="Main Screen-1.png") # Set main screen background
