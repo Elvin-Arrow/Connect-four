@@ -6,4 +6,4 @@ There are a few features that might make their way to the game in the upcoming v
 1. Dynamic player piece movement
 2. Clouds on the main screen
 3. Different board styles
-
+4. Music
