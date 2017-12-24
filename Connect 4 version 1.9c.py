@@ -7,19 +7,16 @@ import time
 pygame.init()
 move_sound = pygame.mixer.Sound("Move.wav")
 
-
 def initialiseGameBoard():
     for row in range(6):
         for column in range(7):
             gameBoard[row][column] = "-"
-
 
 def printGameBoard():
     for row in range(6):
         for column in range(7):
             print(gameBoard[row][column], end='')
         print()
-
 
 def setPlayerColumn(buttonNumber):
     print()
@@ -34,7 +31,6 @@ def setPlayerColumn(buttonNumber):
         columnFlag = True
         print("Column is full!")
 
-
 def nextEmptyPosition(playerColumn, playerMarker):
     row = int(5)
     while gameBoard[row][playerColumn] != "-" and row >= 0:
@@ -42,7 +38,6 @@ def nextEmptyPosition(playerColumn, playerMarker):
     if row >= 0:
         gameBoard[row][playerColumn] = playerMarker
     return row
-
 
 def swapPlayers(playerMarker, turnCounter):
     if playerMarker == "o":
@@ -55,7 +50,6 @@ def swapPlayers(playerMarker, turnCounter):
         print("player Marker: ", playerMarker)
     turnCounter += 1
     return playerMarker, turnCounter
-
 
 def horizontalJudge(playerMarker, playerRow, playerColumn):
     global winList
@@ -93,7 +87,6 @@ def horizontalJudge(playerMarker, playerRow, playerColumn):
         winList = []
     return victoryFlag
 
-
 def verticalJudge(playerMarker, playerRow, playerColumn):
     global winList
     victoryFlag = False
@@ -117,7 +110,6 @@ def verticalJudge(playerMarker, playerRow, playerColumn):
     if not victoryFlag:
         winList = []
     return victoryFlag
-
 
 def diagonalJudge(playerMarker, row, column):
     global winDirection
@@ -186,7 +178,6 @@ def diagonalJudge(playerMarker, row, column):
                     victoryFlag = True
             else:
                 break
-
     # South West
     subRow = row
     subColumn = column
@@ -225,10 +216,8 @@ def toggleMusic(window, buttonClicked):
           pygame.mixer.music.unpause()
           #pygame.mixer.music.unpause()
           musicState = 1
-      
-            
+                
 gameBoard = [[0 for i in range(7)] for j in range(6)]
-
 
 def main():
     def lableUpdate():
@@ -240,12 +229,13 @@ def main():
             musicButton.config(image=icon)
         root.update()
         toggleMusic("Main", True)
+        
     def exitgame():
         choice = messagebox.askyesno(title="Exit", message="Are you sure you want to exit")
         if choice == 1:
+            pygame.mixer.music.stop()
             root.destroy()
     
-
     def gamewindow():
         def iconUpdate():
             if musicState == 1:
@@ -374,8 +364,8 @@ def main():
         bar = PhotoImage(file="Player bar.png")
         playerOne = PhotoImage(file="Player 1.png")
         playerTwo = PhotoImage(file="Player 2.png")
-        music_icon_on = PhotoImage(file="music_edited.png")
-        music_icon_off = PhotoImage(file="music off_edited.png")
+        music_icon_on = PhotoImage(file="music_edi.png")
+        music_icon_off = PhotoImage(file="music_off_edited.png")
         gameboard = Label(game, image=gameBG).pack()
         columnButton_1 = Button(game, image=columnicon1, bd=0, bg="#00628B", activebackground="#00628B",
                                 command=lambda: setPlayerColumn(0)).place(x=170, y=670)
@@ -393,10 +383,9 @@ def main():
                                 command=lambda: setPlayerColumn(6)).place(x=770, y=670)
         global musicState
         if musicState == 1:
-            musicButton = Button(game, image=music_icon_on, bd=0, command=iconUpdate)
+            musicButton = Button(game, image=music_icon_on, bd=0, bg="#00628B", activebackground="#00628B", command=iconUpdate)
         else:
-            musicButton = Button(game, image=music_icon_off, bd=0, command=iconUpdate)
-        
+            musicButton = Button(game, image=music_icon_off, bd=0, bg="#00628B", activebackground="#00628B", command=iconUpdate)       
         musicButton.place(x=940, y=690)
         barLabel = Label(game, image=bar)
         winnerMessage = StringVar()
@@ -464,8 +453,8 @@ def main():
     bg = PhotoImage(file="Main_Screen.png")
     playImage = PhotoImage(file="Play-Button.png")
     exitImage = PhotoImage(file="Exit-Button.png")
-    music_icon_on = PhotoImage(file="music_edited.png")
-    music_icon_off = PhotoImage(file="music off_edited.png")
+    music_icon_on = PhotoImage(file="music_edi.png")
+    music_icon_off = PhotoImage(file="music_off_edited.png")
     background = Label(root, image=bg).pack()
     pygame.mixer.music.load("Prelude_No_8.wav")
     global winDirection
@@ -476,18 +465,16 @@ def main():
         x=400, y=450)
     toggleMusic("Main", False)
     if musicState == 1:
-        musicButton = Button(root, image=music_icon_on, bd=0, command=lableUpdate)
+        musicButton = Button(root, image=music_icon_on, bd=0, bg="#00628B", activebackground="#00628B", command=lableUpdate)
     else:
-        musicButton = Button(root, image=music_icon_off, bd=0, command=lableUpdate)
+        musicButton = Button(root, image=music_icon_off, bd=0, bg="#00628B", activebackground="#00628B", command=lableUpdate)
     musicButton.place(x=950, y=670)
     root.mainloop()
     
-
 musicState = 1
 winDirection = ""
 moveFlag = False
 columnFlag = False
 playerColumn = int(0)
 winList = []
-
 main()
