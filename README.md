@@ -5,3 +5,4 @@ This version of the game is fully functional with all the planned features baked
 There are a few features that might make their way to the game in the upcoming versions, like:
 1. Grid mesh
 2. Player Victory Message
+3. Initial game Tutorial
