@@ -165,7 +165,7 @@ def diagonalJudge(playerMarker, row, column):
     if not victoryFlag:
         winlist = []
     else:
-        winDirection = "Right Diagonal"
+        winDirection = "Left Diagonal"
     # Checking the other diagonal
     # North East
     victoryCounter = int(0)
@@ -182,6 +182,7 @@ def diagonalJudge(playerMarker, row, column):
                 winList.append(subColumn)
                 victoryCounter += 1
                 if victoryCounter == 3:
+                    winDirection = "Right Diagonal"
                     victoryFlag = True
             else:
                 break
@@ -200,13 +201,12 @@ def diagonalJudge(playerMarker, row, column):
                 winList.append(subColumn)
                 victoryCounter += 1
                 if victoryCounter == 3:
+                    winDirection = "Right Diagonal"
                     victoryFlag = True
             else:
                 break
     if not victoryFlag:
         winList = []
-    else:
-        winDirection = "Left Diagonal"
     return victoryFlag
 
 def toggleMusic(window, buttonClicked):
@@ -296,7 +296,7 @@ def main():
             elif winDirection == "Right Diagonal":                
                 xcoords = 205
                 ycoords = 305
-                cross = PhotoImage(file="Diagonal cross.png")
+                cross = PhotoImage(file="Right_DC.png")
                 smallest_x = winList[1]
                 largest_y = winList[0]
                 for i in range(1, len(winList)+1, 2):
@@ -315,7 +315,7 @@ def main():
             else:           
                 xcoords = 205
                 ycoords = 105
-                cross = PhotoImage(file="Right_DC.png")
+                cross = PhotoImage(file="Left_DC.png")
                 smallest_x = winList[1]
                 smallest_y = winList[0]
                 for i in range(1, len(winList)+1, 2):
@@ -447,6 +447,8 @@ def main():
     music_icon_off = PhotoImage(file="music off_edited.png")
     background = Label(root, image=bg).pack()
     pygame.mixer.music.load("Prelude_No_8.wav")
+    global winDirection
+    winDirection = ""
     play = Button(root, image=playImage, bg="#00628B", bd=0, activebackground="#00628B", command=gamewindow).place(
         x=350, y=300)
     exitButton = Button(root, image=exitImage, bg="#00628B", bd=0, activebackground="#00628B", command=exitgame).place(
